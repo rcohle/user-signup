@@ -3,6 +3,28 @@
 <html>
     <head><title>Signup Page</title></head>
 <body>
+    
+{#
+    begin comment
+    {% extends "base.html" %}
+
+    {% block content %}
+    
+    {% if user_name > 1 or user_name > 3 %}
+    {% else %}
+    {% endif %}
+
+    {% if verify_password != password %}
+
+    {% if " " in user_name %}
+
+    {% if email}
+    
+    
+    {% endblock %}
+    end comment
+#}
+
 
 <h1>Signup Page</h1>
 
@@ -20,7 +42,7 @@
 
         <p><label>
             Verify Password:
-            <input type="password" name="password" />
+            <input type="password" name="verify_password" />
         </label></p>
     
         <p><label>
