@@ -2,25 +2,22 @@
 
 <html>
     <head><title>Signup Page</title></head>
+    <style>.error{
+        color:red
+    }
+    </style>
 <body>
     
 {#
     begin comment
     {% extends "base.html" %}
-
     {% block content %}
-    
     {% if user_name > 1 or user_name > 3 %}
     {% else %}
     {% endif %}
-
     {% if verify_password != password %}
-
     {% if " " in user_name %}
-
     {% if email}
-    
-    
     {% endblock %}
     end comment
 #}
@@ -28,12 +25,14 @@
 
 <h1>Signup Page</h1>
 
-    <form action="" method="POST">
+    <form method="POST">
         
         <p><label>
             User name:
             <input type="text" name="user_name" />
         </label></p>
+
+        <p class=error> {{ empty_error }} </p>
 
         <p><label>
             Password:

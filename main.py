@@ -8,46 +8,30 @@ app.config['DEBUG'] = True
 
 # Show the user the signup form
 @app.route('/')
-def index():
+def display_signup():
     return render_template('index.html')
 
-# If everything passes, redirect the user to the welcome form
-# If certain things don't pass, reject and redirect
-
-# user_name = request.form['user_name']
-# password = request.form['password']
-# verify_password = request.form['verify_password']
-# user_email = request.form['user_email']
-
-# error_spaces
-# error_characters
-# error_empty
-# error_no_match
-
-# VALIDATE USER NAME --
-#   if any spaces detected, redirect and show error msg NO SPACES
-#   if length of entry < 3, redirect and show error msg MUST BE AT LEAST 4 CHARACTERS
-#   if field empty, redirect and show error EMPTY
-    
-# VALIDATE PASSWORD
-#   if any spaces detected, redirect and show error msg NO SPACES
-#   if length of entry < 3, redirect and show error msg MUST BE AT LEAST 4 CHARACTERS
-#   if field empty, redirect and show error EMPTY
-
-# VALIDATE VERIFY PASSWORD
-#   if matches password entered, pass
-#   if field empty, redirect and show error EMPTY
-#   if field does not match password, redirect and show error NO MATCH
-
-# VALIDATE EMAIL (OPTIONAL SUBMISSION FOR USER)
-#   if field empty, pass
-#   if field contains email, pass 
-
-# If no errors, send to welcome page
-
-@app.route('/welcome', methods=['POST'])
-def welcome():
+# display form AND any errors
+@app.route('/', methods = ['POST'])
+def validate_signup():
+    #gets info from user's submission in form
     user_name = request.form['user_name']
-    return render_template('welcome.html', user_name=user_name)
+    empty_error = ''
+
+    if user_name == '':
+        empty_error = 'Empty field...'
+        user_name = ''
+    elif len(user_name) < 3:
+        empty_error = 'Need more than 3 characters'
+        user_name = ''
+    else:
+        if ' ' in user_name:
+            empty_error = 'No spaces allowed'
+            user_name = ''
+    
+    if empty_error == '':
+        return render_template('welcome.html', user_name=user_name)
+    else:
+        return render_template('index.html', empty_error=empty_error, user_name=user_name)
 
 app.run()
