@@ -2,30 +2,14 @@
 
 <html>
     <head>
-        
         <title>Signup Page</title>
         <style>.error{
             color:red
-        }
+            }
         </style>
     </head>
 
 <body>
-    
-{#
-    begin comment
-    {% extends "base.html" %}
-    {% block content %}
-    {% if user_name > 1 or user_name > 3 %}
-    {% else %}
-    {% endif %}
-    {% if verify_password != password %}
-    {% if " " in user_name %}
-    {% if email}
-    {% endblock %}
-    end comment
-#}
-
 
 <h1>Signup Page</h1>
 
@@ -33,7 +17,7 @@
         
         <p><label>
             User name:
-            <input type="text" name="user_name" />
+            <input type="text" name="user_name"  value="{{ request.form['user_name'] }}" />
         </label></p>
         <p class=error> {{ empty_error_user_name }} </p>
 
@@ -52,10 +36,9 @@
 
         <p><label>
             Email (optional):
-            <input type="text" name="user_email" />
+            <input type="text" name="user_email" value="{{ request.form['user_email'] }}" />
         </label></p>
         <p class=error> {{ email_error }} </p>
-
 
         <input type="submit" />
 
