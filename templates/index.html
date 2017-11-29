@@ -1,11 +1,15 @@
 <!doctype html>
 
 <html>
-    <head><title>Signup Page</title></head>
-    <style>.error{
-        color:red
-    }
-    </style>
+    <head>
+        
+        <title>Signup Page</title>
+        <style>.error{
+            color:red
+        }
+        </style>
+    </head>
+
 <body>
     
 {#
@@ -31,23 +35,27 @@
             User name:
             <input type="text" name="user_name" />
         </label></p>
-
-        <p class=error> {{ empty_error }} </p>
+        <p class=error> {{ empty_error_user_name }} </p>
 
         <p><label>
             Password:
             <input type="password" name="password" />
         </label></p>
+        <p class=error> {{ empty_error_password }} </p>
 
         <p><label>
             Verify Password:
             <input type="password" name="verify_password" />
         </label></p>
-    
+        <p class=error> {{ match_error }} </p>
+        <p class=error> {{ empty_error_verify_password }} </p>
+
         <p><label>
             Email (optional):
-            <input type="email" name="user_email" />
+            <input type="text" name="user_email" />
         </label></p>
+        <p class=error> {{ email_error }} </p>
+
 
         <input type="submit" />
 
